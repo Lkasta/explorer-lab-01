@@ -58,12 +58,12 @@ const cardNumberPattern = {
         },
         {
             mask: "0000 0000 0000 0000",
-            regex: /6\d[1-5]\d{0,15}/,
+            regex: /^8[6-9]\d{0,2}/,
             cardType: "elo"
         },
         {
             mask: "0000 0000 0000 0000",
-            regex: /7\d[1-5]\d{0,15}/,
+            regex: /^7[1-5]\d{0,2}/,
             cardType: "nubank"
         },
         {
@@ -83,6 +83,49 @@ const cardNumberPattern = {
 
 const cardNumberMasked = IMask(cardNumber, cardNumberPattern)
 
-
-
 globalThis.setCardType = setCardType //para poder executar o comando no console do navegador
+
+const addButton = document.querySelector("#add-card")
+addButton.addEventListener("click", (event) => {
+    event.preventDefault();
+    alert("Cartão Adicionado")
+})
+
+const cardHolder = document.querySelector("#card-holder")
+cardHolder.addEventListener("input", () => {
+    const ccHolder = document.querySelector(".cc-holder .value")
+    ccHolder.innerText = cardHolder.value.length === 0 ? "JONAS ALVES" : cardHolder.value
+})
+
+securityCodeMasked.on("accept", () => {
+    updateSecurityCode(securityCodeMasked.value);
+})
+
+function updateSecurityCode(code) {
+    const ccSecurity = document.querySelector(".cc-security .value")
+    ccSecurity.innerText = code.length === 0 ? "123" : code
+}
+
+cardNumberMasked.on("accept", () => {
+    updateCardNumber(cardNumberMasked.value);
+    updateCardType();
+})
+
+function updateCardType(type) {
+    const cardType = cardNumberMasked.masked.currentMask.cardType
+    setCardType(cardType)
+}
+
+function updateCardNumber(code) {
+    const ccCardNumber = document.querySelector(".cc-number")
+    ccCardNumber.innerText = code.length === 0 ? "0000 0000 0000 0000" : code
+}
+
+expirationDateMasked.on("accept", () => {
+    updateExpirationDate(expirationDateMasked.value)
+})
+
+function updateExpirationDate(date) {
+    const ccExpiration = document.querySelector(".cc-extra .value")
+    ccExpiration.innerText = date.length === 0 ? "01/32" : date
+}
