@@ -76,7 +76,6 @@ const cardNumberPattern = {
         const foundMask = dynamicMasked.compiledMasks.find(function (item) {
             return number.match(item.regex)
         })
-        console.log(foundMask)
         return foundMask
     }
 }
@@ -129,3 +128,4 @@ function updateExpirationDate(date) {
     const ccExpiration = document.querySelector(".cc-extra .value")
     ccExpiration.innerText = date.length === 0 ? "01/32" : date
 }
+
