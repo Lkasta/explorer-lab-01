@@ -11,6 +11,8 @@ function setCardType(type) {
         mastercard: ["#DF6F29", "#C69347"],
         nubank: ["#8641ba", "#ae6ce0"],
         elo: ["#DFB729", "#843B3B"],
+        americanExpress: ["#41BA80", "#6CE09A"],
+        dinersClub: ["#5D76B7", "#6578BC"],
         default: ["black", "gray"]
     }
 
@@ -47,8 +49,18 @@ const cardNumber = document.querySelector("#card-number")
 const cardNumberPattern = {
     mask: [
         {
+            mask: "0000 000000 0000",
+            regex: /^3[47][0-9]{14}$/,
+            cardType: "americanExpress",
+        },
+        {
+            mask: "0000 000000 0000",     
+            regex: /^3(?:0[0-5]|[68][0-9])[0-9]{11}$/,
+            cardType: "dinersClub",
+        },
+        {
             mask: "0000 0000 0000 0000",
-            regex: /4\d[1-5]\d{0,15}/,
+            regex: /^4[0-9]{12}(?:[0-9]{3})?$/,
             cardType: "visa",
         },
         {
