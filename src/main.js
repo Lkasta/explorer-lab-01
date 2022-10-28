@@ -49,8 +49,8 @@ const cardNumber = document.querySelector("#card-number")
 const cardNumberPattern = {
     mask: [
         {
-            mask: "0000 000000 0000",
-            regex: /^3[47][0-9]{14}$/,
+            mask: "0000 000000 00000",
+            regex: /^3[47]\d{13}$/,
             cardType: "americanExpress",
         },
         {
@@ -141,3 +141,19 @@ function updateExpirationDate(date) {
     ccExpiration.innerText = date.length === 0 ? "01/32" : date
 }
 
+// // FUNÇÃO SWITCH THEME
+
+// const switchMode = document.querySelector('#switchMode')
+// const body = document.querySelector('body')
+// const bgColorCard = document.querySelector("#app")
+
+// switchMode.addEventListener('click', function() {
+//     if (switchMode.checked) {
+//         body.style.background = '#e8e8e8'//light
+//         bgColorCard.style.background = '#cdcdcd'
+//         inputs.style.background = '#ebebeb'
+//     } else {
+//         body.style.background = '#121214' //dark
+//         bgColorCard.style.background = '#323238'
+//     }
+// })
